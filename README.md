@@ -60,9 +60,7 @@ This project is an extension of the Little Esty Shop group project. You will add
 - This project must be deployed to Heroku.
 
 
-## Rubric
-
-4: Exceptional	One or more additional extension features complete.	Students implement strategies not discussed in class and can defend their design decisions (callbacks, scopes, application_helper view methods are created, etc)	ActiveRecord helpers are utilized whenever possible. ActiveRecord is used in a clear and effective way to read/write data including use of grouping, aggregating, and joining. Very little Ruby is used to process data.	Very clear Test Driven Development. Test files are extremely well organized and nested. Students can point to multiple examples of edge case testing that are not included in the user stories.
+## [Rubric](https://backend.turing.edu/module2/projects/bulk_discounts)
 
 ## Bulk Discounts
 Bulk Discounts are subject to the following criteria:
