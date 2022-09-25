@@ -6,7 +6,7 @@ RSpec.describe 'Discount Index Page' do
 
     @items_1 = create_list(:item, 6, merchant: @merchant_1)
 
-    @discount1 = create(:discount, merchant: @merchant_1)
+    @discount_1 = create(:discount, merchant: @merchant_1)
   end
       # Merchant Bulk Discounts Index
 
@@ -26,9 +26,10 @@ RSpec.describe 'Discount Index Page' do
     click_link "View all discounts"
 
     expect(current_path).to eq(merchant_discounts_path(@merchant_1)) #index
-    expect(page).to have_content(bulk_discounts_placeholder)
+    expect(page).to have_content(@discount_1.discount_amount)
+    expect(page).to have_content(@discount_1.threshold)
 
     click_link "z Discount"
-    expect(current_path).to eq(merchant_discount_path(item)) #show
+    expect(current_path).to eq(merchant_discount_path(@items_1)) #show
   end
 end
