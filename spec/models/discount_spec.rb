@@ -6,6 +6,6 @@ RSpec.describe Discount, type: :model do
     it { should validate_presence_of :threshold }
   end
   describe 'relationships' do
-    it { should belongs_to(:merchant) }
+    it { should belong_to(:merchant) }
   end
 end
