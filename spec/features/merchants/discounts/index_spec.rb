@@ -75,7 +75,6 @@ RSpec.describe 'Discount Index Page' do
     @transactions_26 = create_list(:transaction, 4, invoice: @invoice_16, result: :success)
 
     @discount1 = create(:discount, merchant: @pretty_plumbing)
-    require 'pry'; binding.pry
   end
       # Merchant Bulk Discounts Index
 
