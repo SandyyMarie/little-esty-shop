@@ -3,10 +3,15 @@ require 'rails_helper'
 RSpec.describe 'Discount Index Page' do
   before :each do
     @merchant_1 = create(:merchant)
+    @merchant_2 = create(:merchant)
 
-    @items_1 = create_list(:item, 6, merchant: @merchant_1)
+    @items_1 = create_list(:item, 10, merchant: @merchant_1)
+    @items_1 = create_list(:item, 20, merchant: @merchant_1)
+
 
     @discount_1 = create(:discount, merchant: @merchant_1)
+    @discount_2 = create(:discount, merchant: @merchant_1)
+    # @discount_3 = create(:discount, merchant: @merchant_2)
   end
       # Merchant Bulk Discounts Index
 
@@ -25,11 +30,12 @@ RSpec.describe 'Discount Index Page' do
 
     click_link "View all discounts"
 
-    expect(current_path).to eq(merchant_discounts_path(@merchant_1)) #index
-    expect(page).to have_content(@discount_1.discount_amount)
+    expect(current_path).to eq(merchant_discounts_path(@merchant_1)) #discount index
+    expect(page).to have_content(@discount_1.discount_amount.round(2) * 100)
     expect(page).to have_content(@discount_1.threshold)
-
-    click_link "z Discount"
-    expect(current_path).to eq(merchant_discount_path(@items_1)) #show
+    
+    save_and_open_page
+    click_link "Discount Description"
+    expect(current_path).to eq(merchant_discount_path(@discount_1)) #discount show
   end
 end

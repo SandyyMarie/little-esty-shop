@@ -1,2 +1,11 @@
 <h1>Discount Index Page</h1>
-<% require 'pry'; binding.pry %>
+<h2>Available Discounts:</h2>
+
+<p><ul>
+  <% @discounts.each do |discount| %>
+    <li>Discount Amount: <%= discount.discount_amount.round(2) * 100 %>%</li>
+    <li>Threshold Quantity: <%= discount.threshold %> </li>
+    <%= link_to "Discount Description", merchant_discount_path(@merchant, discount) %>
+    <br>
+  <% end %>
+</p></ul>

@@ -36,8 +36,8 @@ FactoryBot.define do
   end
 
   factory :discount, class: Discount do
-    discount_amount {Faker::Number.within(range:0.01..1.0)}
-    threshold {Faker::Number.within(range: 1..15)}
+    discount_amount {Faker::Number.within(range:0.10..0.30)} #10-30% range
+    threshold {Faker::Number.within(range: 5..15)} #5-15 items
     association :merchant, factory: :merchant
   end
 end
