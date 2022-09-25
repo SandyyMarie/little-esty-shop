@@ -33,5 +33,11 @@ FactoryBot.define do
     credit_card_expiration_date {""}
     result {Faker::Number.within(range: 0..1)}
     association :invoice, factory: :invoice
-    end
+  end
+
+  factory :discount, class: Discount do
+    discount_amount {Faker::Number.within(range:0.01..1.0)}
+    threshold {Faker::Number.within(range 1..15)}
+    association :merchant, factory: :merchant
+  end
 end
