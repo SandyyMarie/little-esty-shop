@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Discount Index Page' do
+RSpec.describe 'visiting the Discount Index Page' do
   before :each do
     @merchant_1 = create(:merchant)
     @merchant_2 = create(:merchant)
@@ -46,5 +46,17 @@ RSpec.describe 'Discount Index Page' do
     expect(current_path).to eq(merchant_discounts_path(@merchant_1))
     expect(page).to have_content("Discount Amount: 25.0%")
     expect(page).to have_content("Threshold Quantity: 17")
+  end
+
+  it 'shows a link to delete each bulk discount next to it, when you click link you return to #index and the deleted discount is removed' do
+    visit merchant_discounts_path(@merchant_1)
+    expect(page).to have_content(@discount_1)
+
+    within "#discount-#{@discount_1.id}" do
+      click_link "Delete Discount"
+    end
+    
+    expect(current_path).to eq(merchant_discounts_path(@merchant_1))
+    expect(page).to_not have_content(@discount_1)
   end
 end
