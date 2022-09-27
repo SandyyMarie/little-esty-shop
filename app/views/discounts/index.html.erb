@@ -1,13 +1,13 @@
 <h1>Discount Index Page</h1>
 <h2>Available Discounts:</h2>
-
 <p><ul>
   <% @discounts.each do |discount| %>
     <div id="discount-<%= discount.id %>">
       <li>Discount Amount: <%= discount.discount_amount.round(2) * 100 %>%</li>
       <li>Threshold Quantity: <%= discount.threshold %> </li>
-      <%= link_to "Discount Description", merchant_discount_path(@merchant, discount) %>
+      <%= link_to "Discount Description", merchant_discount_path(@merchant, discount), method: :get %>
       <br>
     </div>
   <% end %>
 </p></ul>
+<%= link_to "Create new discount", new_merchant_discount_path(@merchant)%>
