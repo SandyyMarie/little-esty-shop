@@ -44,7 +44,7 @@ RSpec.describe 'Discount Index Page' do
     click_button "Save new discount"
 
     expect(current_path).to eq(merchant_discounts_path(@merchant_1))
-    expect(page).to have_content("Discount Amount: 25%")
+    expect(page).to have_content("Discount Amount: 25.0%")
     expect(page).to have_content("Threshold Quantity: 17")
   end
 end
