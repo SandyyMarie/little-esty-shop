@@ -41,7 +41,7 @@ RSpec.describe 'Discount Index Page' do
     visit new_merchant_discount_path(@merchant_1) #discount new
 
     fill_in "Discount Amount:", with: 0.25
-    fill_in "Threshold:", with: 17
+    fill_in "Threshold Quantity:", with: 17
     click_button "Save new discount"
 
     expect(current_path).to eq(merchant_discounts_path(@merchant_1))

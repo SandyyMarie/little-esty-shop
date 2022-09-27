@@ -1,6 +1,5 @@
 <h1>Discount Index Page</h1>
 <h2>Available Discounts:</h2>
-
 <p><ul>
   <% @discounts.each do |discount| %>
     <div id="discount-<%= discount.id %>">
@@ -11,3 +10,4 @@
     </div>
   <% end %>
 </p></ul>
+<%= link_to "Create new discount", new_merchant_discount_path(@merchant)%>
