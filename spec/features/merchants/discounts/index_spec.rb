@@ -39,7 +39,6 @@ RSpec.describe 'Discount Index Page' do
 
   it 'the new page from the new discount has a form that you fill with valid data and then are redirected back to discount#index and see new discount listed (US#2)' do
     visit new_merchant_discount_path(@merchant_1) #discount new
-
     fill_in "Discount Amount:", with: 0.25
     fill_in "Threshold Quantity:", with: 17
     click_button "Save new discount"
