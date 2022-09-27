@@ -6,6 +6,7 @@
       <li>Discount Amount: <%= discount.discount_amount.round(2) * 100 %>%</li>
       <li>Threshold Quantity: <%= discount.threshold %> </li>
       <%= link_to "Discount Description", merchant_discount_path(@merchant, discount), method: :get %>
+      <%= link_to "Delete this Discount", merchant_discount_path(@merchant, discount), method: :delete %>
       <br>
     </div>
   <% end %>
