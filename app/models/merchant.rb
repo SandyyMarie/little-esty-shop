@@ -4,6 +4,7 @@ class Merchant < ApplicationRecord
   has_many :items
   has_many :invoice_items, through: :items
   has_many :invoices, through: :invoice_items
+  has_many :discounts
   enum active_status: { disabled: 0, enabled: 1 }
 
   def items_not_shipped_sorted_by_date

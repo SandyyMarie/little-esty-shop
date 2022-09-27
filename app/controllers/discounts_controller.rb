@@ -17,9 +17,7 @@ class DiscountsController < ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    require 'pry'; binding.pry
-    discount = Discount.new(discount_params)
-    merchant << discount
+    discount = merchant.discounts.new(discount_params)
     if discount.save
         redirect_to merchant_discount_path(merchant)
     else
