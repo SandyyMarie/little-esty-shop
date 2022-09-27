@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin, only: [:index] do
     get '/', to: 'dashboard#index'
+
     resources :merchants, only: [:edit, :index, :new, :show, :create]
     patch '/merchants/:id', to: 'merchants#update'
 
@@ -13,9 +14,13 @@ Rails.application.routes.draw do
 
   resources :merchants, only: [:show] do
     get '/dashboard', to: 'merchants#show'
+
     resources :invoices, only: [:index ,:show, :update]
+
     resources :items, only: [:new, :index, :show, :edit, :update, :create]
     patch '/items', to: 'items#update'
+
+    resources :discounts, only: [:index, :show]
   end
 
 end

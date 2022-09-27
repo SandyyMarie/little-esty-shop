@@ -485,6 +485,7 @@ RSpec.describe 'Merchant Dashboard' do
           expect("Sunday, October 10, 2021").to_not appear_before("Sunday, June 10, 2001")
         end
       end
+
     end
   end
 end

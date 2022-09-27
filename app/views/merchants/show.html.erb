@@ -4,6 +4,8 @@
 <%= link_to "Items Index", "/merchants/#{@merchant.id}/items" %>
 <br>
 <%= link_to "Invoices Index", "/merchants/#{@merchant.id}/invoices" %>
+<br>
+<%= link_to "View all discounts", merchant_discounts_path(@merchant.id) %>
 
 <div id="top-5-customers">
 <h2>Top 5 Customers:</h2>
