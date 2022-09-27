@@ -11,7 +11,6 @@ RSpec.describe 'visiting the Discount Index Page' do
 
     @discount_1 = create(:discount, merchant: @merchant_1)
     @discount_2 = create(:discount, merchant: @merchant_1)
-    # @discount_3 = create(:discount, merchant: @merchant_2)
   end
 
   it 'From dashboard I see a link to view all my discounts, that takes me to my bulk index page - with all bulk discounts their % discount and quantity threshold, with a link to its show page (US#1)' do
