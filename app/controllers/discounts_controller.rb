@@ -18,12 +18,19 @@ class DiscountsController < ApplicationController
   def create
     merchant = Merchant.find(params[:merchant_id])
     require 'pry'; binding.pry
-    discount = merchant.discounts.new(params[:discount])
+    discount = Discount.new(discount_params)
+    merchant << discount
     if discount.save
         redirect_to merchant_discount_path(merchant)
     else
         flash[:alert] = "New discount was NOT saved"
         redirect_to new_merchant_discount_path(merchant)
     end
+  end
+
+  private
+
+  def discount_params
+    params.require(:discount).permit(:discount_amount, :threshold)
   end
 end
