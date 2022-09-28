@@ -212,21 +212,33 @@ RSpec.describe 'Merchant Invoice Show Page' do
     end
   end
 
-  describe 'Final US#6' do
+  describe 'Final User Stories' do
     before :each do
       merchant_1 = create(:merchant)
+
       item_3 = create(:item, name: "item_3", merchant: merchant_1)
       item_5 = create(:item, name: "item_5", merchant: merchant_1, active_status: :enabled)
       item_10 = create(:item, name: "item_10", merchant: merchant_1)
+
       invoice_1 = create(:invoice)
+
+      discount_1 = merchant_1.discounts.create!(discount_amount: 0.2, threshold: 10)
+
       invoice_item_1 = create(:invoice_items, invoice: invoice_1, item: item_10, unit_price: 1000, quantity: 10)
       invoice_item_1 = create(:invoice_items, invoice: invoice_1, item: item_5, unit_price: 900, quantity: 9)
       invoice_item_1 = create(:invoice_items, invoice: invoice_1, item: item_3, unit_price: 800, quantity: 8)
     end
-    it 'shows me the total revenue for my merchant from this invoice (not including discounts), then total discounted revenue from merchant from this invoice including discounts (US#6)' do
+    xit 'shows me the total revenue for my merchant from this invoice (not including discounts), then total discounted revenue from merchant from this invoice including discounts (US#6)' do
        visit merchant_invoice_path(merchant_1, invoice_1)
        expect(page).to have_content(invoice_1.total_revenue_of_invoice)
        expect(page).to have_content(invoice_1.total_discounted_revenue)
+    end
+
+    it 'shows a link next to each invoice item to the show page for the bulk discount that was applied (if any) (US#7)' do
+      visit merchant_invoice_path(merchant_1, invoice_1)
+
+      click_link 'more information'
+      expect(current_path).to eq(merchant_discount_path(merchant_1, discount_1))
     end
   end
 end
