@@ -34,6 +34,8 @@ RSpec.describe Item, type: :model do
     @invoice_3 = create(:invoice)
     @invoice_4 = create(:invoice)
 
+    @discount_1 = @merchant_1.discounts.create!(discount_amount: 0.2, threshold: 10)
+
     create(:invoice_items, invoice: @invoice_1, item: @item_10, unit_price: 1000, quantity: 10)
     create(:invoice_items, invoice: @invoice_1, item: @item_5, unit_price: 900, quantity: 9)
     create(:invoice_items, invoice: @invoice_1, item: @item_3, unit_price: 800, quantity: 8)
@@ -71,6 +73,7 @@ RSpec.describe Item, type: :model do
     it '#total_revenue_of_all_items' do
       expect(Item.total_revenue_of_all_items).to eq(179000)
     end
+
   end
 
   describe 'instance methods' do
