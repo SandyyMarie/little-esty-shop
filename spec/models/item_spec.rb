@@ -74,10 +74,6 @@ RSpec.describe Item, type: :model do
       expect(Item.total_revenue_of_all_items).to eq(179000)
     end
 
-    it '#total_discounted_revenue (US#5)' do
-      expect(@invoice_1.items.total_revenue_of_all_items).to eq(24500)
-      expect(@invoice_1.items.total_discounted_revenue).to eq(22500)
-    end
   end
 
   describe 'instance methods' do
