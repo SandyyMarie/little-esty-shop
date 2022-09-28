@@ -63,16 +63,10 @@ RSpec.describe 'visiting the Discount Index Page' do
       expect(page).to_not have_content(@discount_1.threshold)
     end
   end
-
-#   As a merchant
-# When I visit the discounts index page
-# I see a section with a header of "Upcoming Holidays"
-# In this section the name and date of the next 3 upcoming US holidays are listed.
-
-# Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
+  
   it 'shows a section with a header for Upcoming Holidays, with the name and date of the next 3 upcoming US holidays listed (US#9)' do
     visit merchant_discounts_path(@merchant_1)
-    save_and_open_page
+    
     expect(page).to have_content("Indigenous Peoples Day(TEST) 10/10/2022")
     expect(page).to have_content("Veterans Day(TEST) 11/11/2022")
     expect(page).to have_content("Thanksgiving(TEST) 11/24/2022")
