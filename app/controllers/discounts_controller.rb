@@ -53,4 +53,6 @@ class DiscountsController < ApplicationController
   def discount_params
     params.require(:discount).permit(:discount_amount, :threshold)
   end
+
+
 end
