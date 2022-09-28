@@ -1,2 +1,3 @@
 <h1>Discount Description</h1>
 <p>Recieve a <%= @discount.discount_amount.round(2) * 100 %>% discount on an order of <%= @discount.threshold %> or more of a given item.</p>
+<%= link_to "Edit this Discount", edit_merchant_discount_path(@merchant, @discount), method: :get %>
