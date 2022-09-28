@@ -30,7 +30,13 @@ class Invoice < ApplicationRecord
     .first
   end
 
-    def total_revenue_of_invoice
-      items.total_revenue_of_all_items
+  def total_revenue_of_invoice
+    items.total_revenue_of_all_items
+    # invoice_items.sum("quantity * unit_price")
+  end
+
+  def total_discounted_revenue
+    require 'pry'; binding.pry
+    # items.joins([merchant:[:discounts]]).where('invoice_items.quantity >=  discounts.threshold').select('invoice_items.quantity, discounts.threshold, invoice_items.unit_price, discounts.discount_amount, invoice_items.quantity * invoice_items.unit_price * discounts.threshold as total_discount')
     end
 end
