@@ -8,10 +8,9 @@ RSpec.describe InvoiceItem, type: :model do
     it { should validate_numericality_of(:quantity) } 
     it { should validate_numericality_of(:unit_price) } 
   end
+
   describe 'relationships' do
     it { should belong_to(:item) }
     it { should belong_to(:invoice) }
   end
-
-  
 end
