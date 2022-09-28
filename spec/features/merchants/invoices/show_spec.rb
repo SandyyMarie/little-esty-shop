@@ -228,7 +228,7 @@ RSpec.describe 'Merchant Invoice Show Page' do
       @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_5, unit_price: 900, quantity: 9)
       @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_3, unit_price: 800, quantity: 8)
     end
-    it 'shows me the total revenue for my merchant from this invoice (not including discounts), then total discounted revenue from merchant from this invoice including discounts (US#6)' do
+    xit 'shows me the total revenue for my merchant from this invoice (not including discounts), then total discounted revenue from merchant from this invoice including discounts (US#6)' do
        visit merchant_invoice_path(@merchant_1, @invoice_1)
        expect(page).to have_content(@invoice_1.total_revenue_of_invoice)
        expect(page).to have_content(@invoice_1.total_discounted_revenue)

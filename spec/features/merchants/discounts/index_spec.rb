@@ -70,7 +70,7 @@ RSpec.describe 'visiting the Discount Index Page' do
 # In this section the name and date of the next 3 upcoming US holidays are listed.
 
 # Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
-  it 'shows a section with a header for Upcoming Holidays, with the name and date of the next 3 upcoming US holidays listed (US#8)' do
+  it 'shows a section with a header for Upcoming Holidays, with the name and date of the next 3 upcoming US holidays listed (US#9)' do
     merchant_discounts_path(@merchant_1)
 
     expect(page).to have_content("Columbus Day")
