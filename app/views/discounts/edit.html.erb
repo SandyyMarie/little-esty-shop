@@ -2,7 +2,7 @@
 
 <%= form_with model: [@merchant, @discount], local: true do |f| %>
 <%= f.label :discount_amount, "New Discount Amount:" %>
-<%= f.text_field :discount_amount, placeholder: "#{(@discount.discount_amount.round(2) * 100)}" %>
+<%= f.text_field :discount_amount, placeholder: @discount.discount_amount.round(2) %>
 
 <%= f.label :threshold, "New Threshold Quantity:"%>
 <%= f.text_field :threshold, placeholder: "#{@discount.threshold}" %>
