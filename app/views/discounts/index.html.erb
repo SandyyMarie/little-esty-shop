@@ -14,3 +14,9 @@
   </p></ul>
   <%= link_to "Create new discount", new_merchant_discount_path(@merchant)%>
 </div>
+<h3>Upcoming Holidays:</h3>
+<ol>
+<% @holidays.each do |holiday| %>
+  <li><%= holiday.name %> <%= holiday.date %></li>
+<% end %>
+</ol>
