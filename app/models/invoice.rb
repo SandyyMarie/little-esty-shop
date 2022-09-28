@@ -4,6 +4,9 @@ class Invoice < ApplicationRecord
   has_many :invoice_items
   has_many :items, through: :invoice_items
 
+  has_many :merchants, through: :items
+  has_many :discounts, through: :merchants
+
   enum status: { "in progress": 0, completed: 1, cancelled: 2 }
 
   def self.unshipped_invoices
@@ -36,7 +39,8 @@ class Invoice < ApplicationRecord
   end
 
   def total_discounted_revenue
-    require 'pry'; binding.pry
-    # items.joins([merchant:[:discounts]]).where('invoice_items.quantity >=  discounts.threshold').select('invoice_items.quantity, discounts.threshold, invoice_items.unit_price, discounts.discount_amount, invoice_items.quantity * invoice_items.unit_price * discounts.threshold as total_discount')
-    end
+    invoice_items.joins(merchants: :discounts).where("invoice_items.quantity >=  discounts.threshold").select("invoice_item.id, max(invoice_items.quantity * invoice_items.unit_price * (discounts.discount_amount / 100)) as total_discount").group("invoice_item.id").sum("total_discount")
+
+    # items.joins([merchant:[:discounts]]).where("invoice_items.quantity >=  discounts.threshold").select("invoice_item.id, max(invoice_items.quantity * invoice_items.unit_price * (discounts.discount_amount / 100)) as total_discount").group("invoice_item.id").sum("total_discount")    
+  end
 end
