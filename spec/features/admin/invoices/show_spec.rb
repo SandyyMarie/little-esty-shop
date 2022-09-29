@@ -87,6 +87,14 @@ RSpec.describe "Admin Invoice Show Page" do
         end
       end
 
+      it 'shows the total revenue from this invoice without discounts, then the total discounted revenue from this invoice (US#8)' do
+        visit admin_invoice_path(@invoice_1)
+       
+        expect(page).to have_content(@invoice_1.total_revenue_of_invoice)
+        expect(page).to have_content(@invoice_1.total_discounted_revenue)
+        expect(page).to have_content(@invoice_1.total_rev_with_discount)
+      end
+
     end
   end
 end
