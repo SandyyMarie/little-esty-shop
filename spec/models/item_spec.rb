@@ -108,8 +108,8 @@ RSpec.describe Item, type: :model do
     end
 
     it '#qualifies_for_discount(US#7)' do 
-      expect(@item_1.qualifies_for_discount).to eq(true)
-      expect(@item_2.qualifies_for_discount).to eq(false)
+      expect(@item_10.find_discount).to eq(@discount_1)
+      expect(@item_1.find_discount).to eq(nil)
     end
   end
 end

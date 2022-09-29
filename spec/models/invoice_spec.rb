@@ -79,7 +79,7 @@ RSpec.describe Invoice, type: :model do
       expect(@invoice_1.total_revenue_of_invoice).to be (50000)
     end
   
-    it '#total_discounted_revenue (US#6)' do
+    xit '#total_discounted_revenue (US#6)' do
       merchant_1 = create(:merchant)
       customer_1 = create(:customer)
       invoice_1 = create(:invoice, status: :completed, created_at: "08-10-2022", customer: customer_1)
@@ -101,6 +101,8 @@ RSpec.describe Invoice, type: :model do
       expect(invoice_1.total_revenue_of_invoice).to eq(34500)
       expect(invoice_1.total_discounted_revenue).to eq(32500) 
     end
+
+
 
   end
 end
