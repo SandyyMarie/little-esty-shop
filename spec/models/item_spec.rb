@@ -106,5 +106,10 @@ RSpec.describe Item, type: :model do
     it "#item-revenue" do
       expect(@item_10.revenue).to eq(50000)
     end
+
+    it '#qualifies_for_discount(US#7)' do 
+      expect(@item_10.find_discount).to eq(@discount_1)
+      expect(@item_1.find_discount).to eq(nil)
+    end
   end
 end
