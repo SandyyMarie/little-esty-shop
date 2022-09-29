@@ -18,11 +18,10 @@
     <p>Item Price: <%= item.unit_price %></p>
     <p>Item Quantity: <%= item.quantity_purchased(@invoice.id) %></p>
 
-    <% @discounts.each do |discount| %> 
-      <% if item.quantity_purchased(@invoice.id) >= discount.threshold %>
-      Discount applied! <%= link_to "More Information", merchant_discount_path(@merchant, discount), method: :get %>
-      <% end %>
+    <% if item.find_discount != nil %>
+      Discount applied! <%= link_to "More Information", merchant_discount_path(@merchant, item.find_discount), method: :get %>
     <% end %>
+
     
     <p>Item Shipping Status: <%= item.shipping_status(@invoice.id) %>  </p>
     <%= form_with model: [@merchant, @invoice], local: true do |form| %>

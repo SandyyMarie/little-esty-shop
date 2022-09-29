@@ -49,9 +49,8 @@ class Item < ApplicationRecord
     .sum('(invoice_items.unit_price * invoice_items.quantity)')
   end
 
-  def qualifies_for_discount
-    require 'pry'; binding.pry
-    discounts.joins(merchant:[:invoice_items]).where('invoice_items.quantity >= discounts.threshold')
+  def find_discount
+    discounts.joins(merchant:[:invoice_items]).where('invoice_items.quantity >= discounts.threshold AND item_id = ?', self.id).order(discount_amount: :desc).limit(1).first
   end
 
 end
