@@ -9,6 +9,10 @@
   <p>Invoice Status: <%= @invoice.status %></p>
   <p>Invoice Created: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %></p>
   <p>Customer Name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %></p>
+  <p>Revenue Generated (before discount): $<%= @invoice.total_revenue_of_invoice %> </p>
+  <p>Total Discount to deduct: $<%= @invoice.total_discounted_revenue %> </p>
+  <p>Total Revenue Generated after discount: $<%= @invoice.total_rev_with_discount %> </p>
+
 
 </div>
 
@@ -21,8 +25,6 @@
     <% if item.find_discount != nil %>
       Discount applied! <%= link_to "More Information", merchant_discount_path(@merchant, item.find_discount), method: :get %>
     <% end %>
-
-    
     <p>Item Shipping Status: <%= item.shipping_status(@invoice.id) %>  </p>
     <%= form_with model: [@merchant, @invoice], local: true do |form| %>
       <%= form.label :item_id %>

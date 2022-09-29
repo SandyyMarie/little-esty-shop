@@ -38,9 +38,12 @@ class Invoice < ApplicationRecord
     # invoice_items.sum("quantity * unit_price")
   end
 
-  # def total_discounted_revenue
-  #   invoice_items.joins(merchants: :discounts).where("invoice_items.quantity >=  discounts.threshold").select("invoice_item.id, max(invoice_items.quantity * invoice_items.unit_price * (discounts.discount_amount / 100)) as total_discount").group("invoice_item.id").sum("total_discount")
+  def total_discounted_revenue
 
-  #   # items.joins([merchant:[:discounts]]).where("invoice_items.quantity >=  discounts.threshold").select("invoice_item.id, max(invoice_items.quantity * invoice_items.unit_price * (discounts.discount_amount / 100)) as total_discount").group("invoice_item.id").sum("total_discount")    
-  # end
+    Invoice.from(invoice_items.joins(item:[merchant: :discounts]).where("invoice_items.quantity >= discounts.threshold").select('invoice_items.id, max(invoice_items.quantity * invoice_items.unit_price * discounts.discount_amount) as discounted_total').group("invoice_items.id")).sum('discounted_total')
+  end
+
+  def total_rev_with_discount
+    total_revenue_of_invoice - total_discounted_revenue
+  end
 end

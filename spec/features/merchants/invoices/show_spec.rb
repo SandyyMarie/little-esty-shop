@@ -214,23 +214,41 @@ RSpec.describe 'Merchant Invoice Show Page' do
 
   describe 'Final User Stories' do
     before :each do
-      @merchant_1 = create(:merchant)
+      # @merchant_1 = create(:merchant)
 
+      # @item_3 = create(:item, name: "item_3", merchant: @merchant_1)
+      # @item_5 = create(:item, name: "item_5", merchant: @merchant_1, active_status: :enabled)
+      # @item_10 = create(:item, name: "item_10", merchant: @merchant_1)
+
+      # @invoice_1 = create(:invoice)
+
+      # @discount_1 = @merchant_1.discounts.create!(discount_amount: 0.2, threshold: 10)
+
+      # @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_10, unit_price: 1000, quantity: 10)
+      # @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_5, unit_price: 900, quantity: 9)
+      # @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_3, unit_price: 800, quantity: 8)
+      @merchant_1 = create(:merchant)
+      @customer_1 = create(:customer)
+      @invoice_1 = create(:invoice, status: :completed, created_at: "08-10-2022", customer: @customer_1)
+
+      @item_1 = create(:item, merchant: @merchant_1)
       @item_3 = create(:item, name: "item_3", merchant: @merchant_1)
       @item_5 = create(:item, name: "item_5", merchant: @merchant_1, active_status: :enabled)
       @item_10 = create(:item, name: "item_10", merchant: @merchant_1)
 
-      @invoice_1 = create(:invoice)
-
+      @transactions_2 = create_list(:transaction, 1, result: :success, invoice: @invoice_1)
+    
       @discount_1 = @merchant_1.discounts.create!(discount_amount: 0.2, threshold: 10)
 
-      @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_10, unit_price: 1000, quantity: 10)
-      @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_5, unit_price: 900, quantity: 9)
-      @invoice_item_1 = create(:invoice_items, invoice: @invoice_1, item: @item_3, unit_price: 800, quantity: 8)
+      @invoice_item1 = create(:invoice_items, item_id: @item_1.id, invoice_id: @invoice_1.id, quantity: 5, unit_price: 2000, status: :packaged) #10000
+      @invoice_item2 = create(:invoice_items, invoice: @invoice_1, item: @item_10, unit_price: 1000, quantity: 10) #10000
+      @invoice_item3 = create(:invoice_items, invoice: @invoice_1, item: @item_5, unit_price: 900, quantity: 9) #8100
+      @invoice_item4 = create(:invoice_items, invoice: @invoice_1, item: @item_3, unit_price: 800, quantity: 8) #6400
     end
 
     it 'shows me the total revenue for my merchant from this invoice (not including discounts), then total discounted revenue from merchant from this invoice including discounts (US#6)' do
        visit merchant_invoice_path(@merchant_1, @invoice_1)
+       
        expect(page).to have_content(@invoice_1.total_revenue_of_invoice)
        expect(page).to have_content(@invoice_1.total_discounted_revenue)
     end
